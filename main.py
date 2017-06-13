@@ -56,7 +56,7 @@ def distances2coordinates(distances):
     for i in range(N):
         sum1 = cache[i] + sum([distances[j, i]**2 for j in range(i+1)])
 
-        val = 1/N * sum1 - 1/N**2 * sum2
+        val = 1.0/N * sum1 - 1.0/N**2 * sum2
         d_0.append(val)
 
     # generate gram matrix
@@ -64,7 +64,7 @@ def distances2coordinates(distances):
     for row in range(distances.shape[0]):
         for col in range(distances.shape[1]):
             dists = d_0[row]**2 + d_0[col]**2 - distances[row, col]**2
-            gram[row, col] = 1/2 * dists
+            gram[row, col] = 0.5 * dists
 
     # extract coordinates from gram matrix
     coordinates = []
